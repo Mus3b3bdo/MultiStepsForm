@@ -16,8 +16,8 @@ export let theme = createTheme({
     },
     secondary: {
       dark: "hsl(231, 11%, 63%)", //Cool gray
-      main: "hsl(217, 100%, 97%)", //Magnolia
-      light: "hsl(229, 24%, 87%)", //Light gray
+      main: "hsl(229, 24%, 87%)", //Magnolia
+      light: "hsl(217, 100%, 97%)", //Light gray
       contrastText: "hsl(231, 100%, 99%)", //Alabaster
     },
   },
