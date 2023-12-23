@@ -16,6 +16,6 @@ export default function Switch() {
     case 3:
       return <Summary />;
     default:
-      return <p>I don't know that fruit.</p>;
+      return <p>Some Error Occured</p>;
   }
 }

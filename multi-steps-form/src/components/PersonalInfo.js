@@ -1,5 +1,4 @@
 import {
-  useTheme,
   FormGroup,
   FormControl,
   FormLabel,
@@ -7,29 +6,25 @@ import {
   Typography,
   TextField,
 } from "@mui/material";
-import React, { useContext, useRef, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { stateContext } from "../App";
+import { classes } from "../styles";
 
 export default function PersonalInfo() {
   const { clicked, setIsValid } = useContext(stateContext);
   const [emailValid, setEmailValid] = useState(false);
   const [nameValid, setNameValid] = useState(false);
   const [phoneValid, setPhoneValid] = useState(false);
-  const nameRef = useRef();
-  const mailRef = useRef();
-  const phoneRef = useRef();
   useEffect(() => {
-    if (clicked) {
-      nameValid && emailValid && phoneValid && setIsValid(true);
-    } else setIsValid(true);
-  }, [clicked, nameValid, phoneValid, emailValid]);
+    nameValid && emailValid && phoneValid && setIsValid(true);
+  }, [nameValid, phoneValid, emailValid]);
 
   return (
     <FormGroup>
-      <Typography variant="h1" color="primary.main">
+      <Typography variant="h1" color="primary.main" mb={2}>
         Personal Info
       </Typography>
-      <Typography variant="body1" color="primary.contrastText">
+      <Typography variant="body1" color="secondary.dark" mb={3}>
         Please provide your name, email address, and phone number.
       </Typography>
       <FormControl component="fieldset">
@@ -40,19 +35,15 @@ export default function PersonalInfo() {
           type="text"
           autoComplete="off"
           placeholder="e.g. Stephen King"
-          ref={nameRef}
           onChange={(e) => {
-            nameRef.current = e.target.value;
-            if (!nameRef.current.trim()) {
+            if (!e.target.value.trim()) {
               setNameValid(false);
             } else {
               setNameValid(true);
             }
           }}
         />
-        <FormHelperText
-          sx={{ color: useTheme().palette.error.main, textAlign: "right" }}
-        >
+        <FormHelperText sx={classes.errorText}>
           {clicked && !nameValid ? "error" : ""}
         </FormHelperText>
       </FormControl>
@@ -64,16 +55,12 @@ export default function PersonalInfo() {
           type="email"
           autoComplete="off"
           placeholder="e.g. stephenking@lorem.com"
-          ref={mailRef}
           onChange={(e) => {
             const regex = /^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-            mailRef.current = e.target.value;
-            regex.test(mailRef.current) && setEmailValid(true);
+            regex.test(e.target.value) && setEmailValid(true);
           }}
         />
-        <FormHelperText
-          sx={{ color: useTheme().palette.error.main, textAlign: "right" }}
-        >
+        <FormHelperText sx={classes.errorText}>
           {clicked && !emailValid ? "error" : ""}
         </FormHelperText>
       </FormControl>
@@ -85,16 +72,12 @@ export default function PersonalInfo() {
           type="text"
           autoComplete="off"
           placeholder="e.g. +1 234 567 890"
-          ref={phoneRef}
-          onClick={(e) => {
-            phoneRef.current = e.target.value;
+          onChange={(e) => {
             const regex = /^[+]?[\d]{9,13}$/;
-            regex.test(phoneRef.current) && setPhoneValid(true);
+            regex.test(e.target.value) && setPhoneValid(true);
           }}
         />
-        <FormHelperText
-          sx={{ color: useTheme().palette.error.main, textAlign: "right" }}
-        >
+        <FormHelperText sx={classes.errorText}>
           {clicked && !phoneValid ? "error" : ""}
         </FormHelperText>
       </FormControl>

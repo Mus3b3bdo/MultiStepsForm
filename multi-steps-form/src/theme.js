@@ -67,6 +67,35 @@ export let theme = createTheme({
         }
       `,
     },
+    MuiStepLabel: {
+      styleOverrides: {
+        root: {
+          "& .MuiStepLabel-label": {
+            display: "grid",
+            placeItems: "center",
+            border: "1px solid",
+            borderRadius: "5rem",
+            borderColor: "hsl(228, 100%, 84%)",
+            color: "hsl(228, 100%, 84%)",
+            width: 35,
+            height: 35,
+            textAlign: "center",
+          },
+          "& .MuiStepLabel-label.Mui-active": {
+            color: "hsl(213, 96%, 18%)",
+            backgroundColor: "hsl(228, 100%, 84%)",
+          },
+          ".MuiStepLabel-iconContainer": {
+            display: "none",
+          },
+        },
+      },
+    },
+    MuiTypography: {
+      styleOverrides: {
+        root: {},
+      },
+    },
   },
 });
 
